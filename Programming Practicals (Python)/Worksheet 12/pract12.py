@@ -1,0 +1,107 @@
+from tkinter import Tk, Frame, Label, Entry, Button, StringVar
+
+
+class LoginApp:
+
+    def __init__(self, login_details):
+        self.login_details = login_details
+        self.win = Tk()
+        self.win.title("Employee Login")
+        self.win.geometry("300x100")
+
+        self.main_frame = Frame(self.win)
+        self.main_frame.grid(column=0, row=0)
+
+        self.username = StringVar()
+        self.password = StringVar()
+        self.message = StringVar()
+        self.message.set("Enter username and password.")
+
+    def run(self):
+        self.create_widgets()
+        self.win.mainloop()
+
+    def create_widgets(self):
+        label_message = Label(
+            self.main_frame,
+            textvariable=self.message,
+            width=30
+        )
+        label_message.grid(column=0, row=0, columnspan=2)
+
+        label_username = Label(
+            self.main_frame,
+            text="Username:"
+        )
+        label_username.grid(column=0, row=1)
+
+        entry_username = Entry(
+            self.main_frame,
+            width=25,
+            textvariable=self.username
+        )
+        entry_username.grid(column=1, row=1)
+
+        label_password = Label(
+            self.main_frame,
+            text="Password:"
+        )
+        label_password.grid(column=0, row=2)
+
+        entry_password = Entry(
+            self.main_frame,
+            width=25,
+            textvariable=self.password,
+            # Challenge #1 - Improve Password Privacy.
+            show="*"
+        )
+        entry_password.grid(column=1, row=2)
+
+        button_sign_in = Button(
+            self.main_frame,
+            text="Sign In",
+            command=self.authenticate
+        )
+        button_sign_in.grid(column=0, row=3)
+
+        button_cancel = Button(
+            self.main_frame,
+            text="Cancel",
+            command=self.win.destroy
+        )
+        button_cancel.grid(column=1, row=3)
+
+    def authenticate(self):
+        username = self.username.get()
+        password = self.password.get()
+
+        # Challenge #2 - Changing Frame Colour (Based on User Action)
+        if username not in self.login_details:
+            self.message.set("Username not found.")
+            self.main_frame.configure(background="red")
+        elif self.login_details[username] != password:
+            self.message.set("Incorrect password.")
+            self.main_frame.configure(background="yellow")
+        else:
+            self.message.set("Login successful!")
+            self.main_frame.configure(background="green")
+
+
+def main():
+    company_login_details = {
+        "YousefD": "VenterboSS",
+        "SergeiT": "25Operyu",
+        "YemiO": "Idec704",
+        "WinonaS": "IAmMel12"
+    }
+
+    with open("user_data.csv", "r") as file:
+        for line in file:
+            username, password = line.strip().split(",")
+            company_login_details[username] = password
+
+    app = LoginApp(company_login_details)
+    app.run()
+
+
+main()
