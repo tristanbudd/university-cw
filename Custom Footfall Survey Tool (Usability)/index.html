@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Foot Traffic Counter</title>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <meta name="apple-mobile-web-app-title" content="FTSurvey" />
+        <link rel="manifest" href="/site.webmanifest" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+        <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <h1>Foot Traffic Counter</h1>
+        <div class="survey-controls">
+            <button id="start-survey-btn" onclick="startSurvey()"><i class="fa-solid fa-play"></i> Start Survey</button>
+            <button id="stop-survey-btn" onclick="stopSurvey()"><i class="fa-solid fa-stop"></i> Stop Survey</button>
+        </div>
+        <div class="traffic-grid">
+            <div class="traffic-card" id="option-card">
+                <h2>Options</h2>
+
+                <div class="option-card">
+                    <button id="add-record-btn" onclick="addRecord()"><i class="fa-solid fa-plus"></i> Add Record</button>
+                    <button id="remove-record-btn" onclick="removeRecord()"><i class="fa-solid fa-minus"></i> Remove Record</button>
+                </div>
+            </div>
+            <div class="traffic-card" id="statistic-card">
+                <h2>Statistics</h2>
+
+                <div class="statistic-card">
+                    <p id="total-count">Total Count: 0</p>
+                    <p id="time-collecting">Time Collecting: 00:00:00</p>
+                    <p id="start-time">Start Time: N/A</p>
+                    <p id="end-time">End Time: N/A</p>
+                </div>
+            </div>
+            <div class="traffic-card" id="counter-card">
+                <h2>Traffic Log</h2>
+
+                <div class="counter-card">
+                    <textarea readonly rows="24" id="traffic-log">No records yet.</textarea>
+
+                    <button id="copy-log-btn" onclick="copyLog()"><i class="fa-solid fa-copy"></i> Copy Log</button>
+                    <button id="export-log-btn" onclick="exportLog()"><i class="fa-solid fa-cloud-arrow-down"></i> Export Log</button>
+                </div>
+            </div>
+        </div>
+
+        <script src="js/script.js"></script>
+    </body>
+</html>
